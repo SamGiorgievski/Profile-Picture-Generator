@@ -1,39 +1,37 @@
 import "./Home.scss";
 import { useState, useEffect} from "react";
-import axios from "axios";
-import { generatePrompts } from '../utils/openai.js';
+// import { generatePrompts } from '../utils/openai.js';
+import { Configuration, OpenAIApi } from "openai";
+const configuration = new Configuration({
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
 
 
 export default function Home() {
-  const [edit, setEdit] = useState({
-    initial: "",
-    mask: "",
-    prompt: ""
+
+  // image generate state
+  const [generate, setGenerate] = useState ("");
+  const [result, setResult] = useState ("");
+
+const generateImage = async (model, prompt) => {
+  
+  const response = await openai.createImage({
+    prompt: "A cute baby sea otter",
+    n: 2,
+    size: "1024x1024",
   });
 
-  const [generate, setGenerate] = useState ({
-    prompt: ""
-  });
+  console.log(response.data.data[0].url);
 
-  const [result, setResult] = useState ({
-    link: ""
-  });
-
-  useEffect(() => {
-    console.log(`generate: ${generate.prompt}`);
-  }, [generate])
-
-  const generateImage = async () => {
-    generatePrompts();
-    
-  }
+}
 
   return (
-    <div className="title home">
-      <h1>Hello</h1>
+    <div className="home">
+      <h1 className = "title">Hello</h1>
       <div className="generate">
         <h4>Generate Image:</h4>
-        <form type="submit">
+        <form type="submit" className="generate_form">
           <label htmlFor="description">Enter a prompt:</label>
           <input 
           id="description"
@@ -49,6 +47,8 @@ export default function Home() {
           onClick={generateImage}
           ></input>
         </form>
+          <button onClick={generateImage}> submit</button>
+        {result && <img src={result} className="result_image" />}
 
 
       </div>

@@ -1,5 +1,22 @@
-
+.home {
+  display:flex;
+  flex-direction: column;
+  text-align: center;
+}
 .title {
   font-size: 72px;
   text-align: center;
+}
+
+.generate {
+  display:flex;
+  flex-direction: column;
+  margin:auto;
+  width: 30%;
+}
+
+.generate_form {
+  display:flex;
+  flex-direction: column;
+  max-width: auto;
 }
