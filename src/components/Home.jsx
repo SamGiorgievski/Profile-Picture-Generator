@@ -1,10 +1,8 @@
 import "./Home.scss";
 import { useState, useEffect} from "react";
 import axios from "axios";
-const { Configuration, OpenAIApi } = require("openai");
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+import { generatePrompts } from '../utils/openai.js';
+
 
 export default function Home() {
   const [edit, setEdit] = useState({
@@ -26,17 +24,7 @@ export default function Home() {
   }, [generate])
 
   const generateImage = async () => {
-    try {
-      const response = await axios.post(
-        "https://api.openai.com/v1/images/generations", {
-          prompt: "A cute baby sea otter"
-        }
-      )
-      console.log(response);
-      console.log("hi");
-    } catch (error) {
-      console.error(error);
-    }
+    generatePrompts();
     
   }
 

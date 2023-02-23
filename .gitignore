@@ -22,5 +22,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Openai secret key
-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
+.env
