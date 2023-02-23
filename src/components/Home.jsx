@@ -16,13 +16,37 @@ export default function Home() {
 
 const generateImage = async (model, prompt) => {
   
+  try {
   const response = await openai.createImage({
-    prompt: "A cute baby sea otter",
+    prompt: generate,
     n: 2,
     size: "1024x1024",
   });
 
   console.log(response.data.data[0].url);
+  setResult(response.data.data[0].url);
+  
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+const generateOtter = async (model, prompt) => {
+  
+  try {
+  const response = await openai.createImage({
+    prompt: "A cute baby sea otter",
+    n: 2,
+    size: "1024x1024",
+  });
+  console.log(response.data.data[0].url);
+  setResult(response.data.data[0].url);
+  } catch (error) {
+    console.log(error);
+  }
+
+  
 
 }
 
@@ -31,24 +55,25 @@ const generateImage = async (model, prompt) => {
       <h1 className = "title">Hello</h1>
       <div className="generate">
         <h4>Generate Image:</h4>
-        <form type="submit" className="generate_form">
-          <label htmlFor="description">Enter a prompt:</label>
           <input 
           id="description"
           type="text"
           onChange={(event)=>{
-            setGenerate({prompt: event.target.value})
+            setGenerate(event.target.value)
           }} 
+          placeholder="Type something to generate"
           >
           </input>
-          <input 
+          <button 
           type="submit" 
           value="submit"
           onClick={generateImage}
-          ></input>
-        </form>
-          <button onClick={generateImage}> submit</button>
-        {result && <img src={result} className="result_image" />}
+          >Submit</button>
+          <button className="otter" onClick={generateOtter}> Click for otter</button>
+        {result && <div className="result">
+          <div>View result:</div>
+          <img src={result} className="result_image" />
+          </div>}
 
 
       </div>
