@@ -10,8 +10,8 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route index element = {<Home/>}/>
-      <Route index element = {<Generate/>}/>
-      <Route index element = {<Edit/>}/> 
+      <Route path="/generate" index element = {<Generate/>}/>
+      <Route path="/edit" index element = {<Edit/>}/> 
     </Routes>
   </BrowserRouter>
 );

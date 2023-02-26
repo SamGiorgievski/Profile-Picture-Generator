@@ -12,8 +12,6 @@ export default function Home() {
   return (
     <div className="home">
       <Navbar/>
-
-      {feature === "generate" && <Generate />}
       
     </div>
   )
