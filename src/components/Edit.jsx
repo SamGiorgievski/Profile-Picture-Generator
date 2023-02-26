@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import "./Edit.scss";
 
 export default function Edit() {
   return (
-    <div>Edit</div>
+    <div className="edit">
+      Edit
+    </div>
   )
 }
