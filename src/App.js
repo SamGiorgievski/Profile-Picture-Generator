@@ -3,7 +3,7 @@ import { Link, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Generate from './components/Generate';
 import Edit from './components/Edit';
-import "./Navbar.scss";
+import "./App.scss";
 
 
 export default function App() {
@@ -11,7 +11,7 @@ export default function App() {
     <>
       <div className="navbar">
         <div className="title"> 
-          <Link to="/"> Openai project</Link>
+          <Link to="/"> Profile Maker</Link>
         </div>
         <ul className="features">
           <li>

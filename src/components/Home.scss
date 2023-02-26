@@ -3,3 +3,14 @@
   flex-direction: column;
   text-align: center;
 }
+
+.feature_list {
+  display:flex;
+  flex-direction: column;
+  margin:auto;
+  width: 30%;
+  height: 100vh;
+  text-align: justify;
+  text-justify: inter-word;
+
+}

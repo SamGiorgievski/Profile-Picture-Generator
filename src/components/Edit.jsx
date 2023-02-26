@@ -24,9 +24,23 @@ export default function Edit() {
 
   return (
     <div className="edit">
-      <input type="file" onChange={fileSelectedHandler}></input>
+      <h1>Edit Image</h1>
+      {!pic.imagePath && (
+            <img
+              src={
+                "https://via.placeholder.com/300/808080.png/fff?text=Upload+image+to+begin"
+              }
+              alt="uploaded_image"
+              className= "upload"
+            />
+          )}
+      {pic.imagePath && <img src={pic.imagePath} alt="uploaded_image" className= "upload" />}
+      <input 
+      type="file"
+      className="file_upload" 
+      onChange={fileSelectedHandler}
+      ></input>
       {/* <button onClick={fileUploadHandler}>Upload</button> */}
-      {pic.imagePath && <img src={pic.imagePath} alt="Upload" />}
     </div>
   )
 }

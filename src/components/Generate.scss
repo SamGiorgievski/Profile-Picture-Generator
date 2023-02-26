@@ -8,10 +8,17 @@
   flex-direction: column;
   margin:auto;
   width: 30%;
+  height: 100vh;
+  align-items: center;
 }
 
 .generate_form {
   display:flex;
   flex-direction: column;
   max-width: auto;
+}
+
+.description {
+  width: 100%;
+  margin-bottom: 10px;
 }

@@ -34,9 +34,9 @@ export default function Generate() {
 
   return (
     <div className="generate">
-        <h4>Generate Image:</h4>
+        <h1>Generate Image</h1>
           <input 
-          id="description"
+          className="description"
           type="text"
           onChange={(event)=>{
             setGenerate(event.target.value)
