@@ -1,13 +1,16 @@
-import {useState} from 'react';
+import { useState, useEffect } from 'react';
 import "./Edit.scss";
 import axios from "axios";
 import { storage } from '../firebase';
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 
 export default function Edit() {
 
   const [imageUpload, setImageUpload] = useState(null);
+  const [imageList, setImageList] = useState([]);
+
+  const imageListRef = ref(storage, "images/");
 
   const fileSelectedHandler = (event) => {
 
@@ -25,6 +28,18 @@ export default function Edit() {
       })
 
   }
+
+  useEffect(() => {
+    listAll(imageListRef)
+      .then((response) => {
+        response.items.forEach((item) => {
+          getDownloadURL(item)
+            .then((url) => {
+              setImageList((prev) => [...prev, url]);
+            })
+        })
+      })
+  }, [])
 
   return (
     <div className="edit">
@@ -45,6 +60,12 @@ export default function Edit() {
       onChange={fileSelectedHandler}
       ></input>
       <button onClick={uploadImage}>Upload</button>
+      <div className="user_images">
+        <h2 className="user_images_title">Profile pictures</h2>
+        {imageList.map((url) => {
+          return <img src={url} key={url} className="user_image"/>
+        })}
+      </div>
     </div>
   )
 }
