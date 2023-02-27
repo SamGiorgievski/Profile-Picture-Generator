@@ -23,8 +23,10 @@ export default function Edit() {
 
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
     uploadBytes(imageRef, imageUpload)
-      .then(() => {
-        alert("Image Uploaded");
+      .then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((url) => {
+          setImageList((prev) => [...prev, url]);
+        })
       })
 
   }
@@ -54,11 +56,13 @@ export default function Edit() {
             />
           {/* )} */}
       {/* {pic && <img src={pic.imagePath} alt="uploaded_image" className= "upload" />} */}
-      <input 
-      type="file"
-      className="file_upload" 
-      onChange={fileSelectedHandler}
-      ></input>
+      <div>
+        <input 
+        type="file"
+        className="file_upload" 
+        onChange={fileSelectedHandler}
+        ></input>
+      </div>
       <button onClick={uploadImage}>Upload</button>
       <div className="user_images">
         <h2 className="user_images_title">Profile pictures</h2>
