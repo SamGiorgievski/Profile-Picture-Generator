@@ -22,3 +22,18 @@
   width: 100%;
   margin-bottom: 10px;
 }
+
+.result {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.result_text {
+  margin-bottom: 10px;
+}
+
+.result_image {
+  width: 500px;
+}

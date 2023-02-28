@@ -38,27 +38,24 @@ export default function Generate() {
   return (
     <div className="generate">
         <h1>Generate Image</h1>
-          <input 
+          <textarea
           className="description"
+          placeholder="Enter a prompt"
           type="text"
-          onChange={(event)=>{
-            setGenerate(event.target.value)
-          }} 
-          placeholder="Type something to generate"
-          >
-          </input>
-          <button 
-          type="submit" 
-          value="submit"
-          onClick={generateImage}
-          >Submit</button>
+          onChange={(event)=>{setGenerate(event.target.value)}} 
+          row="5"
+          cols="50"
+          />
+          <button onClick={generateImage}>Generate</button>
+
         {loading && 
         <div className="loading">
           Loading...
         </div>}
+        
         {result && 
         <div className="result">
-          <div>View result:</div>
+          <div className="result_text">View result:</div>
           <img src={result} className="result_image" />
         </div>}
 
