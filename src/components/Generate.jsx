@@ -1,5 +1,8 @@
 import { useState, useEffect} from "react";
 import "./Generate.scss";
+import { storage } from '../firebase';
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
 
 // import { generatePrompts } from '../utils/openai.js';
 import { Configuration, OpenAIApi } from "openai";
@@ -12,18 +15,18 @@ export default function Generate() {
 
     // image generate state
     const [generate, setGenerate] = useState ("");
+    const [loading, setLoading] = useState ("");
     const [result, setResult] = useState ("");
 
   const generateImage = async (model, prompt) => {
-  
+    setLoading(true);
     try {
     const response = await openai.createImage({
       prompt: generate,
       n: 2,
       size: "1024x1024",
     });
-  
-    console.log(response.data.data[0].url);
+    setLoading(false);
     setResult(response.data.data[0].url);
     
     } catch (error) {
@@ -49,10 +52,15 @@ export default function Generate() {
           value="submit"
           onClick={generateImage}
           >Submit</button>
-        {result && <div className="result">
+        {loading && 
+        <div className="loading">
+          Loading...
+        </div>}
+        {result && 
+        <div className="result">
           <div>View result:</div>
           <img src={result} className="result_image" />
-          </div>}
+        </div>}
 
 
       </div>

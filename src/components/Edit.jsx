@@ -28,7 +28,6 @@ export default function Edit() {
           setImageList((prev) => [...prev, url]);
         })
       })
-
   }
 
   useEffect(() => {
