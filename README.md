@@ -2,6 +2,8 @@
 
 Welcome to my Profile Picture Generator project! This project demonstrates my skills as a junior full stack developer, showcasing my ability to use existing api's to develop some fun and helpful features!
 
+![alt text](https://github.com/samgiorgievski/Profile-Picture-Generator/blob/main/public/ProfilePicGenerator1.png?raw=true)
+
 ## Project Overview
 
 This project is an fun application to showcase my ability in the following areas:
